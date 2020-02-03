@@ -1,5 +1,5 @@
 /*
- * olcDataBaseMgr.h
+ * olcdatabasemgr.h
  *
  *  Created on: 19-Jan-2020
  *      Author: sudarshan
@@ -8,7 +8,7 @@
 #ifndef INCLUDE_OLCDATABASEMGR_H_
 #define INCLUDE_OLCDATABASEMGR_H_
 
-#include "../database/olcDatabaseClient.h"
+#include "../database/olcdatabaseclient.h"
 
 namespace olc {
 

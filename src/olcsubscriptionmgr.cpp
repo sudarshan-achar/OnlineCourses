@@ -1,11 +1,11 @@
 /*
- * olcSubscriptionMgr.cpp
+ * olcsubscriptionmgr.cpp
  *
  *  Created on: 19-Jan-2020
  *      Author: sudarshan
  */
 
-#include "olcSubscriptionMgr.h"
+#include "olcsubscriptionmgr.h"
 
 namespace olc {
 

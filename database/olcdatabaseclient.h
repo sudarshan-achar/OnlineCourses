@@ -1,5 +1,5 @@
 /*
- * olcDatabaseClient.h
+ * olcdatabaseclient.h
  *
  *  Created on: 19-Jan-2020
  *      Author: sudarshan

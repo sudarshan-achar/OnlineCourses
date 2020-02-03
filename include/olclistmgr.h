@@ -1,5 +1,5 @@
 /*
- * olcListMgr.h
+ * olclistmgr.h
  *
  *  Created on: 19-Jan-2020
  *      Author: sudarshan
@@ -8,7 +8,7 @@
 #ifndef INCLUDE_OLCLISTMGR_H_
 #define INCLUDE_OLCLISTMGR_H_
 
-#include "olcDataBaseMgr.h"
+#include "olcdatabasemgr.h"
 
 namespace olc {
 

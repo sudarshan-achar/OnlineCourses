@@ -1,11 +1,11 @@
 /*
- * olcDatabaseClient.cpp
+ * olcdatabaseclient.cpp
  *
  *  Created on: 19-Jan-2020
  *      Author: sudarshan
  */
 
-#include "olcDatabaseClient.h"
+#include "olcdatabaseclient.h"
 
 using namespace olc;
 

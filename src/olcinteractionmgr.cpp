@@ -1,11 +1,11 @@
 /*
- * olcInteractionMgr.cpp
+ * olcinteractionmgr.cpp
  *
  *  Created on: 19-Jan-2020
  *      Author: sudarshan
  */
 
-#include "olcInteractionMgr.h"
+#include "olcinteractionmgr.h"
 
 using namespace olc;
 

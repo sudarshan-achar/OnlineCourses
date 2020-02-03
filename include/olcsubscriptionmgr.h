@@ -1,5 +1,5 @@
 /*
- * olcSubscriptionMgr.h
+ * olcsubscriptionmgr.h
  *
  *  Created on: 19-Jan-2020
  *      Author: sudarshan
@@ -8,7 +8,7 @@
 #ifndef INCLUDE_OLCSUBSCRIPTIONMGR_H_
 #define INCLUDE_OLCSUBSCRIPTIONMGR_H_
 
-#include "olcDataBaseMgr.h"
+#include "olcdatabasemgr.h"
 
 namespace olc {
 

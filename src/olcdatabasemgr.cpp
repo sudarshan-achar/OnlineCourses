@@ -1,11 +1,11 @@
 /*
- * olcDataBaseMgr.cpp
+ * olcdatabasemgr.cpp
  *
  *  Created on: 19-Jan-2020
  *      Author: sudarshan
  */
 
-#include "olcDataBaseMgr.h"
+#include "olcdatabasemgr.h"
 
 namespace olc {
 

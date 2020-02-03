@@ -1,5 +1,5 @@
 /*
- * olcInteractionMgr.h
+ * olcinteractionmgr.h
  *
  *  Created on: 19-Jan-2020
  *      Author: sudarshan
@@ -7,7 +7,7 @@
 
 #ifndef INCLUDE_OLCINTERACTIONMGR_H_
 #define INCLUDE_OLCINTERACTIONMGR_H_
-#include "olcDataBaseMgr.h"
+#include "olcdatabasemgr.h"
 
 namespace olc {
 

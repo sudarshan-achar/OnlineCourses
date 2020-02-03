@@ -1,0 +1,8 @@
+cmake_minimum_required(VERSION 2.8.9)
+project(onlinecourses_project)
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")	
+include_directories(include)
+include_directories(database)
+include_directories(templates)
+file(GLOB SOURCES "main.cpp" "src/*.cpp" "database/*.cpp")
+add_executable(olcproject ${SOURCES})

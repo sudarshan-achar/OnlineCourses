@@ -3,7 +3,8 @@
  *
  *  Created on: 19-Jan-2020
  *      Author: sudarshan
- *  OLCDatabaseClient: This class is a client to main database implementation.
+ *  OLCDatabaseClient: This class is a client to main database implementation
+ *                     template class.
  */
 
 #ifndef DATABASE_OLCDATABASECLIENT_H_
@@ -141,21 +142,21 @@ class OLCDatabaseClient {
    * @param id : Course Id
    * @return CourseDetails_t structure
    */
-  CourseDetails_t GetCourseById(course_id id);
+  CourseDetails_t GetCourseById(course_id &&id);
 
   /**
    * @details Function to get User by sending id
    * @param id : User Id
    * @return UserDetails_t structure
    */
-  UserDetails_t GetUserById(usr_id id);
+  UserDetails_t GetUserById(usr_id &&id);
 
   /**
    * @details Function to get Vendor by sending id
    * @param id : Vendor Id
    * @return VendorDetails_t structure
    */
-  VendorDetails_t GetVendorById(vendor_id id);
+  VendorDetails_t GetVendorById(vendor_id &&id);
 
   /**
    * @details Function to get Course details by title
@@ -164,7 +165,7 @@ class OLCDatabaseClient {
    */
   err_t GetCourseByname(str_t &&title);
 
- public:
+ private:
   /*!
    * Unique_ptr to implementation of Course list database
    */

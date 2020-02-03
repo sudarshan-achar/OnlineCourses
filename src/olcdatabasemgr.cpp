@@ -39,7 +39,7 @@ err_t OLCDataBaseMgr::DisplayAvailableCourses() {
 }
 
 CourseDetails_t OLCDataBaseMgr::GetCourseById(course_id id) {
-  return mDBClientUniptr->GetCourseById(id);
+  return mDBClientUniptr->GetCourseById(std::move(id));
 }
 
 err_t OLCDataBaseMgr::DisplayAllUsers() {
@@ -51,11 +51,11 @@ err_t OLCDataBaseMgr::DisplayAllVendors() {
 }
 
 UserDetails_t OLCDataBaseMgr::GetUserById(usr_id id) {
-  return mDBClientUniptr->GetUserById(id);
+  return mDBClientUniptr->GetUserById(std::move(id));
 }
 
 VendorDetails_t OLCDataBaseMgr::GetVendorById(vendor_id id) {
-  return mDBClientUniptr->GetVendorById(id);
+  return mDBClientUniptr->GetVendorById(std::move(id));
 }
 
 u_int_t OLCDataBaseMgr::GetTotalUserCount() {

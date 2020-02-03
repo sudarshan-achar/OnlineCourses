@@ -110,7 +110,7 @@ inline IOlc<T>* OlcCourse<T>::GetInstance() {
 }
 
 template <class T>
-inline err_t OlcCourse<T>::DisplayDetails() {
+err_t OlcCourse<T>::DisplayDetails() {
   std::cout << "\n";
   std::cout << "The Course Details Are \n";
   std::cout << "Course Name     --> " << mCourseData.courseName << "\n";

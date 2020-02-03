@@ -84,17 +84,17 @@ u_int_t OLCDatabaseClient::GetTotalUsersCount() {
   return mPimplUser->GetListSize();
 }
 
-UserDetails_t OLCDatabaseClient::GetUserById(usr_id id) {
+UserDetails_t OLCDatabaseClient::GetUserById(usr_id&& id) {
   auto luser = mPimplUser->GetById(id);
   return luser.GetData();
 }
 
-VendorDetails_t OLCDatabaseClient::GetVendorById(vendor_id id) {
+VendorDetails_t OLCDatabaseClient::GetVendorById(vendor_id&& id) {
   auto lvendor = mPimplVendor->GetById(id);
   return lvendor.GetData();
 }
 
-CourseDetails_t OLCDatabaseClient::GetCourseById(vendor_id id) {
+CourseDetails_t OLCDatabaseClient::GetCourseById(vendor_id&& id) {
   auto lcourse = mPimplCourse->GetById(id);
   return lcourse.GetData();
 }

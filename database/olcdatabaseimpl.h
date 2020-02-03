@@ -57,15 +57,17 @@ class OLCDataBaseImpl {
   /**
    * @details Function to add id to subscription list
    * @param insertId : id to be added
-   * @param objId    : id of object to which the insertId is added in the list
+   * @param objId    : id of object in which the insertId is to be added in the
+   * list
    * @return error enumeration
    */
   err_t AddIdToList(u_int_t &&insertId, u_int_t &&objId);
 
   /**
    * @details Function to remove id to subscription list
-   * @param removeId
-   * @param objId = id of object to which the insertId is added in the list
+   * @param removeId : id to be removed
+   * @param objId    : id of object in which the removeId is to be removed from
+   * the list
    * @return error enumeration
    */
   err_t RemoveIdFromList(u_int_t &&removeId, u_int_t &&objId);

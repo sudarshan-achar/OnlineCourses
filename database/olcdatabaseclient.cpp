@@ -107,14 +107,16 @@ CourseDetails_t OLCDatabaseClient::GetCourseById(vendor_id&& id) {
 err_t OLCDatabaseClient::GetCourseByname(str_t&& title) {
   auto lcourselist = mPimplCourse->GetMap();
   if (lcourselist) {
+	  auto flag = false;
     for_each((*lcourselist).begin(), (*lcourselist).end(),
-             [title](auto& element) -> err_t {
+             [title, &flag](auto& element) -> err_t {
                auto course = (element.second).GetData();
                if (course.courseName == title) {
                  (element.second).DisplayDetails();
-                 return NO_ERROR;
+                 flag = true;
                }
              });
+    if(flag) return NO_ERROR;
     return NOT_FOUND;
   }
   return NULL_PTR;
@@ -123,16 +125,16 @@ err_t OLCDatabaseClient::GetCourseByname(str_t&& title) {
 err_t OLCDatabaseClient::DisplayCoursesByAuthor(str_t&& author) {
   auto lcourselist = mPimplCourse->GetMap();
   if (lcourselist) {
-    bool ret = false;
+    auto retFlag = false;
     for_each((*lcourselist).begin(), (*lcourselist).end(),
-             [author, &ret](auto& element) -> err_t {
+             [author, &retFlag](auto& element) -> err_t {
                auto course = (element.second).GetData();
                if (course.authorName == author) {
-                 ret = true;
+            	   retFlag = true;
                  (element.second).DisplayDetails();
                }
              });
-    if (ret) return NO_ERROR;
+    if (retFlag) return NO_ERROR;
     return NOT_FOUND;
   }
   return NULL_PTR;

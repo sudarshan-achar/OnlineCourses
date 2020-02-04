@@ -47,23 +47,23 @@ err_t OLCInteractionMgr::Initialize(std::shared_ptr<OLCDataBaseMgr> &&inst) {
   return NO_ERROR;
 }
 
-err_t OLCInteractionMgr::DisplayCourseByTitle(str_t coursetitle) {
+err_t OLCInteractionMgr::DisplayCourseByTitle(str_t &&coursetitle) {
   return mDBmgr->GetCourseByTitle(std::move(coursetitle));
 }
 
-err_t OLCInteractionMgr::DisplayCourseByAuthor(str_t author) {
+err_t OLCInteractionMgr::DisplayCourseByAuthor(str_t &&author) {
   return mDBmgr->DisplayCoursesByAuthor(std::move(author));
 }
 
 err_t OLCInteractionMgr::DisplayAvgCoursePrice() {
   std::cout << "\nThe Average course price is : "
-            << mDBmgr->GetAvgCoursesPrice() << "\n";
+            << mDBmgr->GetAvgCoursesPrice() << " Rs.\n\n\n";
   return NO_ERROR;
 }
 
 err_t OLCInteractionMgr::DisplayMinimumCoursePrice(str_t &&author) {
   std::cout << "\nThe Minimum course price is : "
-            << mDBmgr->GetMinimumCoursePrice(std::move(author)) << "\n";
+            << mDBmgr->GetMinimumCoursePrice(std::move(author)) << " Rs.\n\n\n";
   return NO_ERROR;
 }
 

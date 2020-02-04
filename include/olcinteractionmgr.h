@@ -36,14 +36,14 @@ class OLCInteractionMgr {
    * @param str : Course title
    * @return error enumeration
    */
-  err_t DisplayCourseByTitle(str_t coursetitle);
+  err_t DisplayCourseByTitle(str_t &&coursetitle);
 
   /**
    * @details Function to Find all courses by a specific author
    * @param str : Course author
    * @return error enumeration
    */
-  err_t DisplayCourseByAuthor(str_t author);
+  err_t DisplayCourseByAuthor(str_t &&author);
 
   /**
    * @details Function to Find the average price of all courses

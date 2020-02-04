@@ -33,17 +33,17 @@ err_t OLCListMgr::DisplayAvailabeCourses() {
   return NULL_PTR;
 }
 
-err_t OLCListMgr::AddCourseToList(CourseDetails_t course) {
+err_t OLCListMgr::AddCourseToList(CourseDetails_t &&course) {
   if (mDbMgr) return mDbMgr->AddCourseToList(course);
   return NULL_PTR;
 }
 
-err_t OLCListMgr::RemoveCourseFromList(course_id id) {
+err_t OLCListMgr::RemoveCourseFromList(course_id &&id) {
   if (mDbMgr) return mDbMgr->RemoveCourseFromList(id);
   return NULL_PTR;
 }
 
-err_t OLCListMgr::DiplsyCourseDetailsById(course_id id) {
+err_t OLCListMgr::DiplsyCourseDetailsById(course_id &&id) {
   if (mDbMgr == nullptr) return NULL_PTR;
   auto course = mDbMgr->GetCourseById(id);
   if ((course.courseId != 0)) {

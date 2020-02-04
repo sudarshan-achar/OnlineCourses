@@ -27,7 +27,7 @@ public:
 	 * @param inst : instance of databasemgr shared pointer
 	 * @return
 	 */
-	err_t Initialize(std::shared_ptr<OLCDataBaseMgr>& inst);
+	err_t Initialize(std::shared_ptr<OLCDataBaseMgr>&& inst);
 
 	/**
 	 * @details Function to Subscribe or Enroll to course
@@ -35,7 +35,7 @@ public:
 	 * @param uid : User Id
 	 * @return error enumeration
 	 */
-	err_t SubscribeCourse(course_id cid,usr_id uid);
+	err_t SubscribeCourse(course_id &&cid,usr_id &&uid);
 
 	/**
 	 * @details Function to Unsubscribe to course
@@ -43,7 +43,21 @@ public:
 	 * @param uid : User Id
 	 * @return error enumeration
 	 */
-	err_t UnSubscribeCourse(course_id cid,usr_id uid);
+	err_t UnSubscribeCourse(course_id &&cid,usr_id &&uid);
+
+	/**
+	 * @details Function to Register to course
+	 * @param item : User details data structure
+	 * @return error enumeration
+	 */
+	err_t RegisterUser(UserDetails_t &&item);
+
+	/**
+	 * @details Function to Unregister to course
+	 * @param item : User details data structure
+	 * @return error enumeration
+	 */
+	err_t UnRegisterUser(usr_id&& id);
 
 private:
 	std::shared_ptr<OLCDataBaseMgr> mDBmgr;

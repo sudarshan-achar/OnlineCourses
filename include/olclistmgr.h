@@ -48,21 +48,21 @@ class OLCListMgr {
    * @param id : Course id to search course in DB
    * @return error enumeration
    */
-  err_t DiplsyCourseDetailsById(course_id id);
+  err_t DiplsyCourseDetailsById(course_id &&id);
 
   /**
    * @details Function to Add course to list
    * @param course : Course details structure
    * @return error enumeration
    */
-  err_t AddCourseToList(CourseDetails_t course);
+  err_t AddCourseToList(CourseDetails_t &&course);
 
   /**
    * @details Function to remove course from list
    * @param id : course Id
    * @return error enumeration
    */
-  err_t RemoveCourseFromList(course_id id);
+  err_t RemoveCourseFromList(course_id &&id);
 
   /**
    * @details Function to Clear all courses from list

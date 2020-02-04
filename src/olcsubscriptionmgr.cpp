@@ -37,17 +37,27 @@ OLCSubscriptionMgr& OLCSubscriptionMgr::operator=(OLCSubscriptionMgr &&other) {
 	return *this;
 }
 
-err_t OLCSubscriptionMgr::Initialize(std::shared_ptr<OLCDataBaseMgr> &inst) {
+err_t OLCSubscriptionMgr::Initialize(std::shared_ptr<OLCDataBaseMgr> &&inst) {
 	mDBmgr=inst;
 	return NO_ERROR;
 }
-err_t OLCSubscriptionMgr::SubscribeCourse(course_id cid ,usr_id uid) {
+err_t OLCSubscriptionMgr::SubscribeCourse(course_id &&cid ,usr_id &&uid) {
 	if(mDBmgr!=nullptr)return mDBmgr->SubscribeCourse(cid,uid);
 	return NULL_PTR;
 }
 
-err_t OLCSubscriptionMgr::UnSubscribeCourse(course_id cid, usr_id uid) {
+err_t OLCSubscriptionMgr::UnSubscribeCourse(course_id &&cid, usr_id &&uid) {
 	if(mDBmgr!=nullptr)return mDBmgr->UnsubscribeCourse(cid,uid);
+	return NULL_PTR;
+}
+
+err_t OLCSubscriptionMgr::RegisterUser(UserDetails_t &&item) {
+	if(mDBmgr)return mDBmgr->AddUser(std::move(item));
+	return NULL_PTR;
+}
+
+err_t OLCSubscriptionMgr::UnRegisterUser(usr_id &&uid) {
+		if(mDBmgr)return mDBmgr->RemoveUser(std::move(uid));
 	return NULL_PTR;
 }
 

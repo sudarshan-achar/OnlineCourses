@@ -86,7 +86,7 @@ class OLCDataBaseImpl {
   u_int_t GetListSize();
 
   /**
-   * @details Function to return current map to the client
+   * @details Function to return pointer to  current map to the client
    * @return
    */
   std::unordered_map<u_int_t, T> *GetMap();

@@ -51,14 +51,14 @@ class OLCDatabaseClient {
    * @param id : Course Id
    * @return error enumeration
    */
-  err_t RemoveCourseFromList(course_id id);
+  err_t RemoveCourseFromList(course_id &&id);
 
   /**
    * @details Function Remove user from map
    * @param id : User Id
    * @return error enumeration
    */
-  err_t RemoveUserFromList(usr_id id);
+  err_t RemoveUserFromList(usr_id &&id);
 
   /**
    * @details Function to Clear course list map
@@ -129,7 +129,7 @@ class OLCDatabaseClient {
    * @details Function to get minimum course price
    * @return price
    */
-  u_int_t GetMinimumCoursePrice();
+  u_int_t GetMinimumCoursePrice(str_t &&author);
 
   /**
    * @details Function to get Average course price

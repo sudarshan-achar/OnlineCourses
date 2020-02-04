@@ -61,9 +61,9 @@ err_t OLCInteractionMgr::DisplayAvgCoursePrice() {
   return NO_ERROR;
 }
 
-err_t OLCInteractionMgr::DisplayMinimumCoursePrice() {
+err_t OLCInteractionMgr::DisplayMinimumCoursePrice(str_t &&author) {
   std::cout << "\nThe Minimum course price is : "
-            << mDBmgr->GetMinimumCoursePrice() << "\n";
+            << mDBmgr->GetMinimumCoursePrice(std::move(author)) << "\n";
   return NO_ERROR;
 }
 

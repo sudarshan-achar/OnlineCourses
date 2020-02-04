@@ -154,7 +154,7 @@ class OLCDataBaseMgr {
    * @details Function to Function to get minimum courses price
    * @return price value
    */
-  u_int_t GetMinimumCoursePrice();
+  u_int_t GetMinimumCoursePrice(str_t &&author);
 
   /**
    * @details Function to get course by title

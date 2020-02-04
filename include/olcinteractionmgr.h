@@ -57,7 +57,7 @@ class OLCInteractionMgr {
    * @param author :
    * @return
    */
-  err_t DisplayMinimumCoursePrice();
+  err_t DisplayMinimumCoursePrice(str_t &&author);
 
  private:
   /*!

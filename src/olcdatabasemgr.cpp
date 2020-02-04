@@ -23,7 +23,7 @@ err_t OLCDataBaseMgr::AddCourseToList(CourseDetails_t course) {
 }
 
 err_t OLCDataBaseMgr::RemoveCourseFromList(course_id id) {
-  return mDBClientUniptr->RemoveCourseFromList(id);
+  return mDBClientUniptr->RemoveCourseFromList(std::move(id));
 }
 
 err_t OLCDataBaseMgr::ClearCourseListDB() {
@@ -67,7 +67,7 @@ err_t OLCDataBaseMgr::AddUser(UserDetails_t &&user) {
 }
 
 err_t OLCDataBaseMgr::RemoveUser(usr_id id) {
-  return mDBClientUniptr->RemoveUserFromList(id);
+  return mDBClientUniptr->RemoveUserFromList(std::move(id));
 }
 
 err_t OLCDataBaseMgr::DisplayCoursesByAuthor(str_t &&author) {
@@ -94,8 +94,8 @@ u_int_t OLCDataBaseMgr::GetAvgCoursesPrice() {
   return mDBClientUniptr->GetAvgCoursePrice();
 }
 
-u_int_t OLCDataBaseMgr::GetMinimumCoursePrice() {
-  return mDBClientUniptr->GetMinimumCoursePrice();
+u_int_t OLCDataBaseMgr::GetMinimumCoursePrice(str_t &&author) {
+  return mDBClientUniptr->GetMinimumCoursePrice(std::move(author));
 }
 
 } /* namespace olc */

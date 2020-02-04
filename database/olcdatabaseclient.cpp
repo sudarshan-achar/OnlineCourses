@@ -42,12 +42,12 @@ err_t OLCDatabaseClient::AddUserToList(UserDetails_t&& user) {
   return NO_ERROR;
 }
 
-err_t OLCDatabaseClient::RemoveUserFromList(usr_id id) {
+err_t OLCDatabaseClient::RemoveUserFromList(usr_id&& id) {
   auto user = mPimplUser->GetById(id);
   return mPimplUser->RemoveFromMap(std::move(user));
 }
 
-err_t OLCDatabaseClient::RemoveCourseFromList(course_id id) {
+err_t OLCDatabaseClient::RemoveCourseFromList(course_id&& id) {
   auto course = mPimplCourse->GetById(id);
   return mPimplCourse->RemoveFromMap(std::move(course));
 }
@@ -69,11 +69,16 @@ u_int_t OLCDatabaseClient::GetTotalVendorsCount() {
 }
 
 err_t OLCDatabaseClient::SubscribeCourse(course_id cid, usr_id uid) {
-  return mPimplUser->AddIdToList(std::move(cid), std::move(uid));
+  auto resCourse = mPimplCourse->AddIdToList(std::move(uid), std::move(cid));
+  auto resUser = mPimplUser->AddIdToList(std::move(cid), std::move(uid));
+  return (err_t)(resCourse | resUser);
 }
 
 err_t OLCDatabaseClient::UnsubscribeCourse(course_id cid, usr_id uid) {
-  return mPimplUser->RemoveIdFromList(std::move(cid), std::move(uid));
+  auto resUser = mPimplUser->RemoveIdFromList(std::move(cid), std::move(uid));
+  auto resCourse =
+      mPimplCourse->RemoveIdFromList(std::move(uid), std::move(cid));
+  return (err_t)(resCourse | resUser);
 }
 
 u_int_t OLCDatabaseClient::GetTotalCoursesCount() {
@@ -102,14 +107,14 @@ CourseDetails_t OLCDatabaseClient::GetCourseById(vendor_id&& id) {
 err_t OLCDatabaseClient::GetCourseByname(str_t&& title) {
   auto lcourselist = mPimplCourse->GetMap();
   if (lcourselist) {
-    for (auto& element : *lcourselist) {
-      auto lcourse = element.second;
-      auto course = lcourse.GetData();
-      if (course.courseName == title) {
-        lcourse.DisplayDetails();
-        return NO_ERROR;
-      }
-    }
+    for_each((*lcourselist).begin(), (*lcourselist).end(),
+             [title](auto& element) -> err_t {
+               auto course = (element.second).GetData();
+               if (course.courseName == title) {
+                 (element.second).DisplayDetails();
+                 return NO_ERROR;
+               }
+             });
     return NOT_FOUND;
   }
   return NULL_PTR;
@@ -119,36 +124,35 @@ err_t OLCDatabaseClient::DisplayCoursesByAuthor(str_t&& author) {
   auto lcourselist = mPimplCourse->GetMap();
   if (lcourselist) {
     bool ret = false;
-    for (auto& element : *lcourselist) {
-      auto lcourse = element.second;
-      auto course = lcourse.GetData();
-      if (course.authorName == author) {
-        ret = true;
-        lcourse.DisplayDetails();
-      }
-    }
+    for_each((*lcourselist).begin(), (*lcourselist).end(),
+             [author, &ret](auto& element) -> err_t {
+               auto course = (element.second).GetData();
+               if (course.authorName == author) {
+                 ret = true;
+                 (element.second).DisplayDetails();
+               }
+             });
     if (ret) return NO_ERROR;
     return NOT_FOUND;
   }
   return NULL_PTR;
 }
 
-u_int_t OLCDatabaseClient::GetMinimumCoursePrice() {
+u_int_t OLCDatabaseClient::GetMinimumCoursePrice(str_t&& author) {
   auto lcourselist = mPimplCourse->GetMap();
-
-  auto min = 0;
-  auto coursedata = ((*lcourselist)[0]).GetData();
-  auto minPrice = coursedata.price;
   if (lcourselist) {
-    for (auto& element : *lcourselist) {
-      auto lcourse = element.second;
-      auto course = lcourse.GetData();
-      if (course.price < minPrice) {
-        minPrice = course.price;
-      }
-    }
+    std::list<u_int_t> list;
+    for_each((*lcourselist).begin(), (*lcourselist).end(),
+             [author, &list](auto& element) {
+               auto course = (element.second).GetData();
+               if (course.authorName == author) {
+                 list.emplace_back(course.price);
+               }
+             });
+    auto itr = std::min_element(list.begin(), list.end());
+    return *itr;
   }
-  return minPrice;
+  return 0;
 }
 
 u_int_t OLCDatabaseClient::GetAvgCoursePrice() {
@@ -156,11 +160,11 @@ u_int_t OLCDatabaseClient::GetAvgCoursePrice() {
   auto avgprice = 0;
   auto size = mPimplCourse->GetListSize();
   if (lcourselist) {
-    for (auto& element : (*lcourselist)) {
-      auto lcourse = element.second;
-      auto course = lcourse.GetData();
-      avgprice = avgprice + course.price;
-    }
+    for_each((*lcourselist).begin(), (*lcourselist).end(),
+             [&avgprice](auto& element) {
+               auto course = (element.second).GetData();
+               avgprice = avgprice + course.price;
+             });
   }
   return (avgprice / size);
 }

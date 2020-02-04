@@ -77,7 +77,7 @@ class OLCDataBaseImpl {
    * @param id
    * @return structure
    */
-  T GetById(u_int_t id);
+  T GetById(u_int_t &&id);
 
   /**
    * @details Function to get Map size
@@ -145,7 +145,7 @@ inline err_t OLCDataBaseImpl<T>::ClearAll() {
 }
 
 template <class T>
-T OLCDataBaseImpl<T>::GetById(u_int_t id) {
+T OLCDataBaseImpl<T>::GetById(u_int_t &&id) {
   if (mMap.size() != 0) {
     for (auto &element : mMap) {
       if (element.first == id) {

@@ -43,12 +43,12 @@ err_t OLCDatabaseClient::AddUserToList(UserDetails_t&& user) {
 }
 
 err_t OLCDatabaseClient::RemoveUserFromList(usr_id&& id) {
-  auto user = mPimplUser->GetById(id);
+  auto user = mPimplUser->GetById(std::move(id));
   return mPimplUser->RemoveFromMap(std::move(user));
 }
 
 err_t OLCDatabaseClient::RemoveCourseFromList(course_id&& id) {
-  auto course = mPimplCourse->GetById(id);
+  auto course = mPimplCourse->GetById(std::move(id));
   return mPimplCourse->RemoveFromMap(std::move(course));
 }
 
@@ -90,17 +90,17 @@ u_int_t OLCDatabaseClient::GetTotalUsersCount() {
 }
 
 UserDetails_t OLCDatabaseClient::GetUserById(usr_id&& id) {
-  auto luser = mPimplUser->GetById(id);
+  auto luser = mPimplUser->GetById(std::move(id));
   return luser.GetData();
 }
 
 VendorDetails_t OLCDatabaseClient::GetVendorById(vendor_id&& id) {
-  auto lvendor = mPimplVendor->GetById(id);
+  auto lvendor = mPimplVendor->GetById(std::move(id));
   return lvendor.GetData();
 }
 
 CourseDetails_t OLCDatabaseClient::GetCourseById(vendor_id&& id) {
-  auto lcourse = mPimplCourse->GetById(id);
+  auto lcourse = mPimplCourse->GetById(std::move(id));
   return lcourse.GetData();
 }
 
@@ -149,8 +149,8 @@ u_int_t OLCDatabaseClient::GetMinimumCoursePrice(str_t&& author) {
                  list.emplace_back(course.price);
                }
              });
-    auto itr = std::min_element(list.begin(), list.end());
-    return *itr;
+    auto minItr = std::min_element(list.begin(), list.end());
+    return *minItr;
   }
   return 0;
 }

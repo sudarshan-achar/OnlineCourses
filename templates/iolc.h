@@ -88,13 +88,19 @@ class IOlc {
    * Function to return current details
    * @return error enumeration
    */
-  virtual T GetData() = 0;
+  virtual T GetData() const = 0;
 
   /**
    * Function to return respective id associated with current object
    * @return id
    */
-  virtual u_int_t GetId() = 0;
+  virtual u_int_t GetId() const = 0;
+
+  /**
+   * Function to return pointer to respective subscribers id list
+   * @return list of type std::list<u_int_t>
+   */
+  virtual GenericList* GetList() = 0;
 };
 
 template <class T>

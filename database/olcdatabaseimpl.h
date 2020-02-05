@@ -117,9 +117,10 @@ err_t OLCDataBaseImpl<T>::RemoveFromMap(T &&item) noexcept {
     for (auto &element : mMap) {
       if (element.first == item.GetId()) {
         mMap.erase(element.first);
+        return NO_ERROR;
       }
     }
-    return NO_ERROR;
+    return NOT_FOUND;
   }
   return NO_ELEMENTS;
 }

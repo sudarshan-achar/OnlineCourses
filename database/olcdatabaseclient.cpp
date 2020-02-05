@@ -107,7 +107,7 @@ CourseDetails_t OLCDatabaseClient::GetCourseById(vendor_id&& id) {
 err_t OLCDatabaseClient::GetCourseByname(str_t&& title) {
   auto lcourselist = mPimplCourse->GetMap();
   if (lcourselist) {
-	  auto flag = false;
+    auto flag = false;
     for_each((*lcourselist).begin(), (*lcourselist).end(),
              [title, &flag](auto& element) -> err_t {
                auto course = (element.second).GetData();
@@ -116,7 +116,7 @@ err_t OLCDatabaseClient::GetCourseByname(str_t&& title) {
                  flag = true;
                }
              });
-    if(flag) return NO_ERROR;
+    if (flag) return NO_ERROR;
     return NOT_FOUND;
   }
   return NULL_PTR;
@@ -130,7 +130,7 @@ err_t OLCDatabaseClient::DisplayCoursesByAuthor(str_t&& author) {
              [author, &retFlag](auto& element) -> err_t {
                auto course = (element.second).GetData();
                if (course.authorName == author) {
-            	   retFlag = true;
+                 retFlag = true;
                  (element.second).DisplayDetails();
                }
              });
@@ -169,6 +169,34 @@ u_int_t OLCDatabaseClient::GetAvgCoursePrice() {
              });
   }
   return (avgprice / size);
+}
+
+err_t OLCDatabaseClient::DisplaySubscribers(course_id&& cid) {
+  auto lmap = mPimplCourse->GetMap();
+  for_each((*lmap).begin(), (*lmap).end(), [this, cid](auto& element) {
+    if ((element.first) == cid) {
+      auto list = (element.second).GetList();
+      for_each((*list).begin(), (*list).end(), [this](auto& ele) {
+        auto user = this->mPimplUser->GetById(std::move(ele));
+        user.DisplayDetails();
+      });
+    }
+  });
+  return NO_ERROR;
+}
+
+err_t OLCDatabaseClient::DisplayCoursesSubscribed(usr_id&& uid) {
+  auto lmap = mPimplUser->GetMap();
+  for_each((*lmap).begin(), (*lmap).end(), [this, uid](auto& element) {
+    if ((element.first) == uid) {
+      auto list = (element.second).GetList();
+      for_each((*list).begin(), (*list).end(), [this](auto& ele) {
+        auto course = this->mPimplCourse->GetById(std::move(ele));
+        course.DisplayDetails();
+      });
+    }
+  });
+  return NO_ERROR;
 }
 
 } /* namespace olc */

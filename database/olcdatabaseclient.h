@@ -165,6 +165,20 @@ class OLCDatabaseClient {
    */
   err_t GetCourseByname(str_t &&title);
 
+  /**
+   * @details Function to Display subscribers
+   * @param cid
+   * @return error enumeration
+   */
+  err_t DisplaySubscribers(course_id &&cid);
+
+  /**
+   * @details Function to Display courses subscribed by user
+   * @param uid
+   * @return error enumeration
+   */
+  err_t DisplayCoursesSubscribed(usr_id &&uid);
+
  private:
   /*!
    * Unique_ptr to implementation of Course list database

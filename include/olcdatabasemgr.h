@@ -163,6 +163,20 @@ class OLCDataBaseMgr {
    */
   err_t GetCourseByTitle(str_t &&coursename);
 
+  /**
+   *
+   * @param cid
+   * @return
+   */
+  err_t DiplaySubscribers(course_id &&cid);
+
+  /**
+   *
+   * @param uid
+   * @return
+   */
+  err_t DiplaySubscribedCourses(usr_id &&uid);
+
  private:
   /*!
    * Unique pointer to point the single ownered database client object to access

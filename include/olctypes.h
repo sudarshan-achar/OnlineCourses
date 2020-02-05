@@ -80,4 +80,7 @@ using CourseIdList = std::list<course_id>;  //! course id list type
 using UserIdList = std::list<course_id>;    //! user id list type
 using VendorIdList = std::list<course_id>;  //! vendor id list type
 
+using GenericList =
+    std::list<u_int_t>;  //! generic list type to hold different Ids
+
 #endif /* INCLUDE_OLCTYPES_H_ */

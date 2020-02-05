@@ -59,13 +59,19 @@ class OlcCourse : public IOlc<T> {
    * @details Function to return course data structure to the client
    * @return error enumeration
    */
-  T GetData() override;
+  T GetData() const override;
 
   /**
    * @details Function to return course id to the client
    * @return Course id
    */
-  u_int_t GetId() override;
+  u_int_t GetId() const override;
+
+  /**
+   * @details Function to return pointer to respective subscribers id list
+   * @return pointer to list of user ids
+   */
+  GenericList* GetList() override;
 
  private:
   CourseDetails_t mCourseData;
@@ -130,7 +136,7 @@ inline err_t OlcCourse<T>::SetData(T&& details) {
 }
 
 template <class T>
-inline T OlcCourse<T>::GetData() {
+inline T OlcCourse<T>::GetData() const {
   return mCourseData;
 }
 
@@ -151,8 +157,13 @@ err_t OlcCourse<T>::RemoveFromList(u_int_t id) {
 }
 
 template <class T>
-inline u_int_t OlcCourse<T>::GetId() {
+inline u_int_t OlcCourse<T>::GetId() const {
   return mCourseData.courseId;
+}
+
+template <class T>
+inline GenericList* OlcCourse<T>::GetList() {
+  return &mList;
 }
 
 }  // namespace olc

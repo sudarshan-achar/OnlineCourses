@@ -98,4 +98,12 @@ u_int_t OLCDataBaseMgr::GetMinimumCoursePrice(str_t &&author) {
   return mDBClientUniptr->GetMinimumCoursePrice(std::move(author));
 }
 
+err_t OLCDataBaseMgr::DiplaySubscribers(course_id &&cid) {
+  return mDBClientUniptr->DisplaySubscribers(std::move(cid));
+}
+
+err_t OLCDataBaseMgr::DiplaySubscribedCourses(usr_id &&uid) {
+  return mDBClientUniptr->DisplayCoursesSubscribed(std::move(uid));
+}
+
 } /* namespace olc */

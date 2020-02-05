@@ -62,13 +62,19 @@ class OlcUser : public IOlc<T> {
    * @details Function to return user data structure to the client
    * @return user details data structure
    */
-  T GetData() override;
+  T GetData() const override;
 
   /**
    * @details Function to return User id to client
    * @return
    */
-  u_int_t GetId() override;
+  u_int_t GetId() const override;
+
+  /**
+   * @details Function to return pointer to respective subscribers id list
+   * @return pointer to list of course ids
+   */
+  GenericList* GetList() override;
 
  private:
   /*!
@@ -123,10 +129,13 @@ inline IOlc<T>* OlcUser<T>::GetInstance() {
 template <class T>
 err_t OlcUser<T>::DisplayDetails() {
   std::cout << "\n";
-  std::cout << "User full name :  " << mUserData.fullName << "\n";
+  if (mUserData.fullName != "")
+    std::cout << "User full name :  " << mUserData.fullName << "\n";
   std::cout << "User Id        :  " << mUserData.userId << "\n";
-  std::cout << "User DOB       :  " << mUserData.dateOfBirth << "\n";
-  std::cout << "User Domain    :  " << mUserData.domain << "\n";
+  if (mUserData.dateOfBirth != "")
+    std::cout << "User DOB       :  " << mUserData.dateOfBirth << "\n";
+  if (mUserData.domain != "")
+    std::cout << "User Domain    :  " << mUserData.domain << "\n";
   std::cout << "\n";
   return NO_ERROR;
 }
@@ -138,7 +147,7 @@ inline err_t OlcUser<T>::SetData(T&& details) {
 }
 
 template <class T>
-inline T OlcUser<T>::GetData() {
+inline T OlcUser<T>::GetData() const {
   return mUserData;
 }
 
@@ -159,8 +168,13 @@ err_t OlcUser<T>::RemoveFromList(u_int_t id) {
 }
 
 template <class T>
-inline u_int_t OlcUser<T>::GetId() {
+inline u_int_t OlcUser<T>::GetId() const {
   return mUserData.userId;
+}
+
+template <class T>
+inline GenericList* OlcUser<T>::GetList() {
+  return &mList;
 }
 
 }  // olc namespace

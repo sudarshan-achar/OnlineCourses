@@ -147,13 +147,8 @@ inline err_t OlcCourse<T>::AddToList(course_id id) {
 }
 
 template <class T>
-err_t OlcCourse<T>::RemoveFromList(course_id id) {
-  std::cout << "OlcCourse<T>::RemoveFromList\n";
-  for (auto& ele : mList) {
-    if (ele == id) {
-      mList.remove(id);
-    }
-  }
+inline err_t OlcCourse<T>::RemoveFromList(course_id id) {
+  mList.remove(std::move(id));
   return NO_ERROR;
 }
 

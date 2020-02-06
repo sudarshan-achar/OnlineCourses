@@ -146,11 +146,7 @@ inline err_t OlcVendor<T>::AddToList(course_id id) {
 
 template <class T>
 inline err_t OlcVendor<T>::RemoveFromList(u_int_t id) {
-  for (auto& ele : mList) {
-    if (ele == id) {
-      mList.remove(id);
-    }
-  }
+  mList.remove(std::move(id));
   return NO_ERROR;
 }
 

@@ -164,7 +164,6 @@ err_t OLCDataBaseImpl<T>::AddIdToList(u_int_t &&insertId, u_int_t &&objId) {
   if (mMap.size() != 0) {
     for (auto &element : mMap) {
       if (element.first == objId) {
-        std::cout << "\nOLCDataBaseImpl<T>::AddIdToList\n";
         (element.second).AddToList(insertId);
         return NO_ERROR;
       }
@@ -181,7 +180,6 @@ err_t OLCDataBaseImpl<T>::RemoveIdFromList(u_int_t &&removeId,
     std::cout << "\nEntered Remove\n";
     for (auto &element : mMap) {
       if (element.first == objId) {
-        std::cout << "\nOLCDataBaseImpl<T>::RemoveIdFromList\n";
         (element.second).RemoveFromList(removeId);
         return NO_ERROR;
       }

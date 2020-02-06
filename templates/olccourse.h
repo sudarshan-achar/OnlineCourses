@@ -46,14 +46,14 @@ class OlcCourse : public IOlc<T> {
    * @param id :
    * @return
    */
-  err_t AddToList(course_id id) override;
+  err_t AddToList(usr_id id) override;
 
   /**
    * @details Function to remove user id from the list to track subscription
    * @param id
    * @return
    */
-  err_t RemoveFromList(u_int_t id) override;
+  err_t RemoveFromList(usr_id id) override;
 
   /**
    * @details Function to return course data structure to the client
@@ -147,7 +147,8 @@ inline err_t OlcCourse<T>::AddToList(course_id id) {
 }
 
 template <class T>
-err_t OlcCourse<T>::RemoveFromList(u_int_t id) {
+err_t OlcCourse<T>::RemoveFromList(course_id id) {
+  std::cout << "OlcCourse<T>::RemoveFromList\n";
   for (auto& ele : mList) {
     if (ele == id) {
       mList.remove(id);

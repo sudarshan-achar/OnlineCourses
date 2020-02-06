@@ -53,7 +53,7 @@ class OlcVendor : public IOlc<T> {
    * @param id :  Particular course Id to remove from list
    * @return error enumeration
    */
-  err_t RemoveFromList(u_int_t id) override;
+  err_t RemoveFromList(course_id id) override;
 
   /**
    * @details Function to Get the vendor data

@@ -60,26 +60,6 @@ class OLCSubscriptionMgr {
    */
   err_t UnRegisterUser(usr_id &&id);
 
-  /**
-   * @details Function to display all subscribers of a particular course
-   * @param id : course id
-   * @return error enumeration
-   */
-  err_t DisplaySubscribers(course_id &&id);
-
-  /**
-   * @details Function to display all courses subscribed by a particular user
-   * @param id
-   * @return
-   */
-  err_t DisplayCoursesSubscribed(usr_id &&id);
-
-  /**
-   *
-   * @return
-   */
-  err_t DisplayTotalUserCount();
-
  private:
   std::shared_ptr<OLCDataBaseMgr> mDBmgr;
 };

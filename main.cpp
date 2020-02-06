@@ -30,6 +30,7 @@ int main() {
   int choice;
   while (true) {
     std::cout
+        << "\n\n"
         << "1-->Display available courses:\n"
         << "2-->Add Course:\n"
         << "3-->Remove Course:\n"
@@ -46,8 +47,8 @@ int main() {
         << "13-->To UnSubscribe any course as a User\n"
         << "14-->To Display all courses that are enrolled by a specific user\n"
         << "15-->To Display enrolled users of a particular course\n"
-		<< "16-->To get total users count\n"
-        << "17-->Exit\n";
+        << "16-->To get total users count\n"
+        << "17-->Exit\n\n\n";
 
     std::cin >> choice;
 
@@ -226,17 +227,17 @@ int main() {
                      "by him\n";
         auto uid = 0;
         std::cin >> uid;
-        olcsubscriptmgr->DisplayCoursesSubscribed(std::move(uid));
+        olcintmgr->DisplayCoursesSubscribed(std::move(uid));
       } break;
       case 15: {
         std::cout << "\nEnter the Course Id to display all the users details "
                      "who enrolled it \n\n";
         auto cid = 0;
         std::cin >> cid;
-        olcsubscriptmgr->DisplaySubscribers(std::move(cid));
+        olcintmgr->DisplaySubscribers(std::move(cid));
       } break;
       case 16: {
-    	  olcsubscriptmgr->DisplayTotalUserCount();
+        olcintmgr->DisplayTotalUserCount();
       } break;
       case 17: {
         std::cout

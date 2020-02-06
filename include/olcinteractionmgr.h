@@ -59,6 +59,26 @@ class OLCInteractionMgr {
    */
   err_t DisplayMinimumCoursePrice(str_t &&author);
 
+  /**
+   * @details Function to get Users count
+   * @return error enumeration
+   */
+  err_t DisplayTotalUserCount();
+
+  /**
+    * @details Function to display all subscribers of a particular course
+    * @param id : course id
+    * @return error enumeration
+    */
+  err_t DisplaySubscribers(course_id &&id);
+
+  /**
+   * @details Function to display all courses subscribed by a particular user
+   * @param id
+   * @return
+   */
+  err_t DisplayCoursesSubscribed(usr_id &&id);
+
  private:
   /*!
    * Member which is a shared_ptr of OLCDataBaseMgr object to access

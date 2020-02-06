@@ -56,7 +56,7 @@ class OlcUser : public IOlc<T> {
    * @param id :course id
    * @return
    */
-  err_t RemoveFromList(u_int_t id) override;
+  err_t RemoveFromList(course_id id) override;
 
   /**
    * @details Function to return user data structure to the client
@@ -132,7 +132,7 @@ err_t OlcUser<T>::DisplayDetails() {
   if (mUserData.fullName != "")
     std::cout << "User full name :  " << mUserData.fullName << "\n";
   if (mUserData.userName != "")
-	std::cout << "User name :  " << mUserData.userName << "\n";
+    std::cout << "User name :  " << mUserData.userName << "\n";
   std::cout << "User Id        :  " << mUserData.userId << "\n";
   if (mUserData.dateOfBirth != "")
     std::cout << "User DOB       :  " << mUserData.dateOfBirth << "\n";
@@ -161,6 +161,7 @@ inline err_t OlcUser<T>::AddToList(course_id id) {
 
 template <class T>
 err_t OlcUser<T>::RemoveFromList(u_int_t id) {
+  std::cout << "OlcUser<T>::RemoveFromList\n";
   for (auto& ele : mList) {
     if (ele == id) {
       mList.remove(id);

@@ -62,19 +62,4 @@ err_t OLCSubscriptionMgr::UnRegisterUser(usr_id &&uid) {
   return NULL_PTR;
 }
 
-err_t OLCSubscriptionMgr::DisplaySubscribers(course_id &&id) {
-  if (mDBmgr) return mDBmgr->DiplaySubscribers(std::move(id));
-  return NULL_PTR;
-}
-
-err_t OLCSubscriptionMgr::DisplayCoursesSubscribed(usr_id &&id) {
-  if (mDBmgr) return mDBmgr->DiplaySubscribedCourses(std::move(id));
-  return NULL_PTR;
-}
-
-err_t OLCSubscriptionMgr::DisplayTotalUserCount() {
-	std::cout<<"\nThe total users are : "<<mDBmgr->GetTotalUserCount()<<"\n\n";
-	return NO_ERROR;
-}
-
 } /* namespace olc */

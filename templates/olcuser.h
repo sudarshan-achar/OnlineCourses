@@ -131,6 +131,8 @@ err_t OlcUser<T>::DisplayDetails() {
   std::cout << "\n";
   if (mUserData.fullName != "")
     std::cout << "User full name :  " << mUserData.fullName << "\n";
+  if (mUserData.userName != "")
+	std::cout << "User name :  " << mUserData.userName << "\n";
   std::cout << "User Id        :  " << mUserData.userId << "\n";
   if (mUserData.dateOfBirth != "")
     std::cout << "User DOB       :  " << mUserData.dateOfBirth << "\n";

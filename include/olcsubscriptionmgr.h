@@ -74,6 +74,12 @@ class OLCSubscriptionMgr {
    */
   err_t DisplayCoursesSubscribed(usr_id &&id);
 
+  /**
+   *
+   * @return
+   */
+  err_t DisplayTotalUserCount();
+
  private:
   std::shared_ptr<OLCDataBaseMgr> mDBmgr;
 };

@@ -75,9 +75,9 @@ err_t OLCDatabaseClient::SubscribeCourse(course_id cid, usr_id uid) {
 }
 
 err_t OLCDatabaseClient::UnsubscribeCourse(course_id cid, usr_id uid) {
-  auto resUser = mPimplUser->RemoveIdFromList(std::move(cid), std::move(uid));
   auto resCourse =
-      mPimplCourse->RemoveIdFromList(std::move(uid), std::move(cid));
+	   mPimplCourse->RemoveIdFromList(std::move(uid), std::move(cid));
+  auto resUser = mPimplUser->RemoveIdFromList(std::move(cid), std::move(uid));
   return (err_t)(resCourse | resUser);
 }
 
@@ -178,7 +178,7 @@ err_t OLCDatabaseClient::DisplaySubscribers(course_id&& cid) {
       auto list = (element.second).GetList();
       for_each((*list).begin(), (*list).end(), [this](auto& ele) {
         auto user = this->mPimplUser->GetById(std::move(ele));
-        user.DisplayDetails();
+        if(user.GetId()!=0)user.DisplayDetails();
       });
     }
   });
@@ -192,7 +192,7 @@ err_t OLCDatabaseClient::DisplayCoursesSubscribed(usr_id&& uid) {
       auto list = (element.second).GetList();
       for_each((*list).begin(), (*list).end(), [this](auto& ele) {
         auto course = this->mPimplCourse->GetById(std::move(ele));
-        course.DisplayDetails();
+        if(course.GetId()!=0)course.DisplayDetails();
       });
     }
   });

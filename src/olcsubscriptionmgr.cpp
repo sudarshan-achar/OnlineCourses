@@ -72,4 +72,9 @@ err_t OLCSubscriptionMgr::DisplayCoursesSubscribed(usr_id &&id) {
   return NULL_PTR;
 }
 
+err_t OLCSubscriptionMgr::DisplayTotalUserCount() {
+	std::cout<<"\nThe total users are : "<<mDBmgr->GetTotalUserCount()<<"\n\n";
+	return NO_ERROR;
+}
+
 } /* namespace olc */

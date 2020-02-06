@@ -44,9 +44,10 @@ int main() {
         << "11-->To Unregister/delete user from platform\n"
         << "12-->To Enroll/Subscribe any course as a User\n"
         << "13-->To UnSubscribe any course as a User\n"
-        << "14-->To Display enrolled users of a particular course\n"
-        << "15-->To Display all courses that are enrolled by a specific user\n"
-        << "16-->Exit\n";
+        << "14-->To Display all courses that are enrolled by a specific user\n"
+        << "15-->To Display enrolled users of a particular course\n"
+		<< "16-->To get total users count\n"
+        << "17-->Exit\n";
 
     std::cin >> choice;
 
@@ -137,7 +138,7 @@ int main() {
       } break;
       case 8: {
         std::cout << "\n";
-        if (olcintmgr->DisplayAvgCoursePrice() == 0) {
+        if (olcintmgr->DisplayAvgCoursePrice() != NO_ERROR) {
           std::cout << "\n\n\n  ************* Check Inputs / Something went "
                        "wrong with data"
                        "*************\n\n\n";
@@ -148,7 +149,7 @@ int main() {
         str_t authorname;
         std::cin >> authorname;
         if (olcintmgr->DisplayMinimumCoursePrice(
-                std::forward<str_t>(authorname)) == 0) {
+                std::forward<str_t>(authorname)) != NO_ERROR) {
           std::cout << "\n\n\n  ************* Check Inputs / Something went "
                        "wrong with data"
                        "*************\n\n\n";
@@ -163,9 +164,6 @@ int main() {
         std::cin >> user.userId;
         std::cout << "\nUser domain : \t";
         std::cin >> user.domain;
-        std::cout << "\nEnter Course Id to enroll \n\n";
-        auto cid = 0;
-        std::cin >> cid;
         olcsubscriptmgr->RegisterUser(std::move(user));
       } break;
       case 11: {
@@ -238,6 +236,9 @@ int main() {
         olcsubscriptmgr->DisplaySubscribers(std::move(cid));
       } break;
       case 16: {
+    	  olcsubscriptmgr->DisplayTotalUserCount();
+      } break;
+      case 17: {
         std::cout
             << "\n\n......................Thank You.....................!!\n\n";
         return 0;

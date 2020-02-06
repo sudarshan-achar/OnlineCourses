@@ -179,6 +179,7 @@ err_t OLCDataBaseImpl<T>::RemoveIdFromList(u_int_t &&removeId,
   if (mMap.size() != 0) {
     for (auto &element : mMap) {
       if (element.first == objId) {
+    	 std::cout<<"\nOLCDataBaseImpl<T>::RemoveIdFromList\n";
         (element.second).RemoveFromList(removeId);
         return NO_ERROR;
       }

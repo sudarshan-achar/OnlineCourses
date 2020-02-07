@@ -34,17 +34,17 @@ class OLCDatabaseClient {
 
   /**
    * @details Function to Add courses to the map
-   * @param course : CourseDetails_t structure
+   * @param course : course_details_t structure
    * @return error enumeration
    */
-  err_t AddCourseToList(CourseDetails_t &&course);
+  err_t AddCourseToList(course_details_t &&course);
 
   /**
    * @details Function to Add users to the map
-   * @param user : UserDetails_t structure
+   * @param user : user_details_t structure
    * @return error enumeration
    */
-  err_t AddUserToList(UserDetails_t &&user);
+  err_t AddUserToList(user_details_t &&user);
 
   /**
    * @details Function Remove course from map
@@ -140,23 +140,23 @@ class OLCDatabaseClient {
   /**
    * @details Function to get Course by sending id
    * @param id : Course Id
-   * @return CourseDetails_t structure
+   * @return course_details_t structure
    */
-  CourseDetails_t GetCourseById(course_id &&id);
+  course_details_t GetCourseById(course_id &&id);
 
   /**
    * @details Function to get User by sending id
    * @param id : User Id
-   * @return UserDetails_t structure
+   * @return user_details_t structure
    */
-  UserDetails_t GetUserById(usr_id &&id);
+  user_details_t GetUserById(usr_id &&id);
 
   /**
    * @details Function to get Vendor by sending id
    * @param id : Vendor Id
-   * @return VendorDetails_t structure
+   * @return vendor_details_t structure
    */
-  VendorDetails_t GetVendorById(vendor_id &&id);
+  vendor_details_t GetVendorById(vendor_id &&id);
 
   /**
    * @details Function to get Course details by title
@@ -183,17 +183,17 @@ class OLCDatabaseClient {
   /*!
    * Unique_ptr to implementation of Course list database
    */
-  std::unique_ptr<OLCDataBaseImpl<OlcCourse<CourseDetails_t>>> mPimplCourse;
+  std::unique_ptr<OLCDataBaseImpl<OlcCourse<course_details_t>>> mPimplCourse;
 
   /*!
    * Unique_ptr to implementation of User list database
    */
-  std::unique_ptr<OLCDataBaseImpl<OlcUser<UserDetails_t>>> mPimplUser;
+  std::unique_ptr<OLCDataBaseImpl<OlcUser<user_details_t>>> mPimplUser;
 
   /*!
    * Unique_ptr to implementation of Vendor list database
    */
-  std::unique_ptr<OLCDataBaseImpl<OlcVendor<VendorDetails_t>>> mPimplVendor;
+  std::unique_ptr<OLCDataBaseImpl<OlcVendor<vendor_details_t>>> mPimplVendor;
 };
 
 } /* namespace olc */

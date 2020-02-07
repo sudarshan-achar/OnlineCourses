@@ -100,7 +100,7 @@ class IOlc {
    * Function to return pointer to respective subscribers id list
    * @return list of type std::list<u_int_t>
    */
-  virtual GenericList* GetList() = 0;
+  virtual generic_list_t* GetList() = 0;
 };
 
 template <class T>

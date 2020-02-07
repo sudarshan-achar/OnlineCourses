@@ -55,7 +55,7 @@ class OLCListMgr {
    * @param course : Course details structure
    * @return error enumeration
    */
-  err_t AddCourseToList(CourseDetails_t &&course);
+  err_t AddCourseToList(course_details_t &&course);
 
   /**
    * @details Function to remove course from list

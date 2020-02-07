@@ -71,11 +71,11 @@ class OlcCourse : public IOlc<T> {
    * @details Function to return pointer to respective subscribers id list
    * @return pointer to list of user ids
    */
-  GenericList* GetList() override;
+  generic_list_t* GetList() override;
 
  private:
-  CourseDetails_t mCourseData;
-  UserIdList mList;
+  course_details_t mCourseData;
+  user_id_list_t mList;
 };
 
 //** Implementation **//
@@ -158,7 +158,7 @@ inline u_int_t OlcCourse<T>::GetId() const {
 }
 
 template <class T>
-inline GenericList* OlcCourse<T>::GetList() {
+inline generic_list_t* OlcCourse<T>::GetList() {
   return &mList;
 }
 

@@ -33,7 +33,7 @@ err_t OLCListMgr::DisplayAvailabeCourses() {
   return NULL_PTR;
 }
 
-err_t OLCListMgr::AddCourseToList(CourseDetails_t &&course) {
+err_t OLCListMgr::AddCourseToList(course_details_t &&course) {
   if (mDbMgr) return mDbMgr->AddCourseToList(course);
   return NULL_PTR;
 }
@@ -47,7 +47,7 @@ err_t OLCListMgr::DiplsyCourseDetailsById(course_id &&id) {
   if (mDbMgr == nullptr) return NULL_PTR;
   auto course = mDbMgr->GetCourseById(id);
   if ((course.courseId != 0)) {
-    auto lcourse = std::make_unique<OlcCourse<CourseDetails_t>>();
+    auto lcourse = std::make_unique<OlcCourse<course_details_t>>();
     lcourse->SetData(std::move(course));
     return lcourse->DisplayDetails();
   } else if ((course.courseId == 0) && (mDbMgr->GetTotalCoursesCount() != 0)) {

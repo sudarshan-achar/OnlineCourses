@@ -18,7 +18,7 @@ err_t OLCDataBaseMgr::CreatDatabaseInstance() {
   return mDBClientUniptr->CreateLists();
 }
 
-err_t OLCDataBaseMgr::AddCourseToList(CourseDetails_t course) {
+err_t OLCDataBaseMgr::AddCourseToList(course_details_t course) {
   return mDBClientUniptr->AddCourseToList(std::move(course));
 }
 
@@ -38,7 +38,7 @@ err_t OLCDataBaseMgr::DisplayAvailableCourses() {
   return mDBClientUniptr->DisplayAllCourses();
 }
 
-CourseDetails_t OLCDataBaseMgr::GetCourseById(course_id id) {
+course_details_t OLCDataBaseMgr::GetCourseById(course_id id) {
   return mDBClientUniptr->GetCourseById(std::move(id));
 }
 
@@ -50,11 +50,11 @@ err_t OLCDataBaseMgr::DisplayAllVendors() {
   return mDBClientUniptr->DisplayAllVendors();
 }
 
-UserDetails_t OLCDataBaseMgr::GetUserById(usr_id id) {
+user_details_t OLCDataBaseMgr::GetUserById(usr_id id) {
   return mDBClientUniptr->GetUserById(std::move(id));
 }
 
-VendorDetails_t OLCDataBaseMgr::GetVendorById(vendor_id id) {
+vendor_details_t OLCDataBaseMgr::GetVendorById(vendor_id id) {
   return mDBClientUniptr->GetVendorById(std::move(id));
 }
 
@@ -62,7 +62,7 @@ u_int_t OLCDataBaseMgr::GetTotalUserCount() {
   return mDBClientUniptr->GetTotalUsersCount();
 }
 
-err_t OLCDataBaseMgr::AddUser(UserDetails_t &&user) {
+err_t OLCDataBaseMgr::AddUser(user_details_t &&user) {
   return mDBClientUniptr->AddUserToList(std::move(user));
 }
 

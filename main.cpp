@@ -62,7 +62,7 @@ int main() {
       }
       case 2: {
         std::cout << "Enter the course details: \n\n";
-        CourseDetails_t course;
+        course_details_t course;
         std::cout << "Enter the course name: \n";
         std::cin >> course.courseName;
         std::cout << "Enter the course Id: \n";
@@ -75,7 +75,7 @@ int main() {
         std::cin >> course.duration;
         std::cout << "Enter the course rating: \n";
         std::cin >> course.courseRating;
-        olclistmgr->AddCourseToList(std::forward<CourseDetails_t>(course));
+        olclistmgr->AddCourseToList(std::forward<course_details_t>(course));
         break;
       }
       case 3: {
@@ -158,7 +158,7 @@ int main() {
       } break;
       case 10: {
         std::cout << "\nEnter the User Details to Register\n";
-        UserDetails_t user;
+        user_details_t user;
         std::cout << "User name (without space): \t";
         std::cin >> user.userName;
         std::cout << "\nUser Id (Unique Id): \t";
@@ -184,7 +184,7 @@ int main() {
           std::cin >> ch;
           if ((ch == "N") || (ch == "n")) {
             std::cout << "\nEnter User details \n\n";
-            UserDetails_t user;
+            user_details_t user;
             std::cout << "User name (without space): \t";
             std::cin >> user.userName;
             std::cout << "\nUser Id (Unique Id): \t";

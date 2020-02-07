@@ -57,7 +57,7 @@ class OlcVendor : public IOlc<T> {
 
   /**
    * @details Function to Get the vendor data
-   * @return VendorDetails_t structure
+   * @return vendor_details_t structure
    */
   T GetData() const override;
 
@@ -71,11 +71,11 @@ class OlcVendor : public IOlc<T> {
    * @details Function to return pointer to respective subscribers id list
    * @return pointer to list of user ids
    */
-  GenericList* GetList() override;
+  generic_list_t* GetList() override;
 
  private:
-  VendorDetails_t mVendorData;
-  CourseIdList mList;
+  vendor_details_t mVendorData;
+  course_id_list_t mList;
 };
 
 template <class T>
@@ -156,7 +156,7 @@ inline u_int_t OlcVendor<T>::GetId() const {
 }
 
 template <class T>
-inline GenericList* OlcVendor<T>::GetList() {
+inline generic_list_t* OlcVendor<T>::GetList() {
   return &mList;
 }
 

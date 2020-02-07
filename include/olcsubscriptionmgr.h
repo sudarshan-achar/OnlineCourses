@@ -51,7 +51,7 @@ class OLCSubscriptionMgr {
    * @param item : User details data structure
    * @return error enumeration
    */
-  err_t RegisterUser(UserDetails_t &&item);
+  err_t RegisterUser(user_details_t &&item);
 
   /**
    * @details Function to Unregister to course

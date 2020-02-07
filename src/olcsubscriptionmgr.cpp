@@ -52,7 +52,7 @@ err_t OLCSubscriptionMgr::UnSubscribeCourse(course_id &&cid, usr_id &&uid) {
   return NULL_PTR;
 }
 
-err_t OLCSubscriptionMgr::RegisterUser(UserDetails_t &&item) {
+err_t OLCSubscriptionMgr::RegisterUser(user_details_t &&item) {
   if (mDBmgr) return mDBmgr->AddUser(std::move(item));
   return NULL_PTR;
 }

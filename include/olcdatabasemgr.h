@@ -35,14 +35,14 @@ class OLCDataBaseMgr {
    * @param course
    * @return error enumeration value
    */
-  err_t AddCourseToList(CourseDetails_t course);
+  err_t AddCourseToList(course_details_t course);
 
   /**
    * @details Function to Add user to map
    * @param user
    * @return error enumeration value
    */
-  err_t AddUser(UserDetails_t &&user);
+  err_t AddUser(user_details_t &&user);
 
   /**
    * @details Function to remove user from map
@@ -110,21 +110,21 @@ class OLCDataBaseMgr {
    * @param id : Course Id
    * @return error enumeration value
    */
-  CourseDetails_t GetCourseById(course_id id);
+  course_details_t GetCourseById(course_id id);
 
   /**
    * @details Function to get user details by Id
    * @param id
-   * @return UserDetails_t structure
+   * @return user_details_t structure
    */
-  UserDetails_t GetUserById(usr_id id);
+  user_details_t GetUserById(usr_id id);
 
   /**
    * @details Function to get vendor by Id
    * @param id
-   * @return VendorDetails_t structure
+   * @return vendor_details_t structure
    */
-  VendorDetails_t GetVendorById(vendor_id id);
+  vendor_details_t GetVendorById(vendor_id id);
 
   /**
    * @details Function to get total courses count

@@ -7,17 +7,16 @@
  * Main program of the  project
  */
 
-#include <iostream>
-#include "include/olcinteractionmgr.h"
-#include "include/olclistmgr.h"
-#include "include/olcsubscriptionmgr.h"
+#include "olcinteractionmgr.h"
+#include "olclistmgr.h"
+#include "olcsubscriptionmgr.h"
 
 using namespace olc;
 
 int main() {
-  std::cout << "\n\n\n * ************ ******* Welcome to Online courses portal "
+  std::cout << "\n\n\n                             * ************ ******* "
+               "Welcome to Online courses portal "
                "******* ************ *\n\n\n\n";
-  std::cout << "Enter the choices as follows\n\n";
   std::unique_ptr<OLCListMgr> olclistmgr = std::make_unique<OLCListMgr>();
   std::unique_ptr<OLCInteractionMgr> olcintmgr =
       std::make_unique<OLCInteractionMgr>();
@@ -27,6 +26,16 @@ int main() {
   olcintmgr->Initialize((olclistmgr->GetPointer()));
   olcsubscriptmgr->Initialize((olclistmgr->GetPointer()));
 
+  std::cout
+      << "\n                 "
+         "...............................................Enter "
+         "As...............................................\n\n         "
+         "        [USER      ? -----> 1]\t       [VENDOR      ? -----> 2]\t"
+         "        [FLATPORM ADMINSTRATOR      ? -----> 3]\n\n";
+  int ch1;
+  std::cin >> ch1;
+
+  std::cout << "\nEnter the choices as follows\n";
   int choice;
   while (true) {
     std::cout

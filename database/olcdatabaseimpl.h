@@ -10,9 +10,9 @@
 #ifndef DATABASE_OLCDATABASEIMPL_H_
 #define DATABASE_OLCDATABASEIMPL_H_
 
-#include "../templates/olccourse.h"
-#include "../templates/olcuser.h"
-#include "../templates/olcvendor.h"
+#include "olccourse.h"
+#include "olcuser.h"
+#include "olcvendor.h"
 #include "olctypes.h"
 
 namespace olc {

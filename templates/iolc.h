@@ -7,7 +7,7 @@
 
 #ifndef TEMPLATES_IOLC_H_
 #define TEMPLATES_IOLC_H_
-#include "../include/olctypes.h"
+#include "olctypes.h"
 
 namespace olc {
 

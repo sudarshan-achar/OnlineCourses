@@ -10,7 +10,7 @@
 #ifndef INCLUDE_OLCDATABASEMGR_H_
 #define INCLUDE_OLCDATABASEMGR_H_
 
-#include "../database/olcdatabaseclient.h"
+#include "olcdatabaseclient.h"
 
 namespace olc {
 

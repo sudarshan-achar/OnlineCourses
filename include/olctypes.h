@@ -6,8 +6,8 @@
  *
  *  Details: This is header file contains all types that are useful in project.
  */
-#include <algorithm>
 #include <iostream>
+#include <algorithm>
 #include <list>
 #include <memory>
 #include <unordered_map>

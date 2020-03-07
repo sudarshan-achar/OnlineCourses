@@ -8,6 +8,7 @@
 #ifndef TEMPLATES_IOLC_H_
 #define TEMPLATES_IOLC_H_
 #include "olctypes.h"
+#include "logwrapper.h"
 
 namespace olc {
 

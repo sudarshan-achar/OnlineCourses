@@ -34,8 +34,8 @@ using err_t = enum Errors {
   NO_ELEMENTS,
   NOT_FOUND,
   NULL_PTR,
-  MAJOR_ERROR,
-  MINOR_ERROR
+  MINOR_ERROR,
+  MAJOR_ERROR
 };
 
 /*!

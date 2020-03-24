@@ -17,33 +17,33 @@ OLCListMgr::OLCListMgr(const OLCListMgr &other) {}
 
 OLCListMgr::OLCListMgr(OLCListMgr &&other) {}
 
-OLCListMgr &OLCListMgr::operator=(const OLCListMgr &other) { return *this; }
+auto OLCListMgr::operator=(const OLCListMgr &other)->OLCListMgr& { return *this; }
 
-OLCListMgr &OLCListMgr::operator=(OLCListMgr &&other) { return *this; }
+auto OLCListMgr::operator=(OLCListMgr &&other)->OLCListMgr& { return *this; }
 
-OLCListMgr *OLCListMgr::GetInstance() { return this; }
+auto OLCListMgr::GetInstance()->OLCListMgr* { return this; }
 
-err_t OLCListMgr::CreateDataBase() {
+auto OLCListMgr::CreateDataBase()->err_t {
   if (mDbMgr) return mDbMgr->CreatDatabaseInstance();
   return NULL_PTR;
 }
 
-err_t OLCListMgr::DisplayAvailabeCourses() {
+auto OLCListMgr::DisplayAvailabeCourses()->err_t {
   if (mDbMgr) return mDbMgr->DisplayAvailableCourses();
   return NULL_PTR;
 }
 
-err_t OLCListMgr::AddCourseToList(course_details_t &&course) {
+auto OLCListMgr::AddCourseToList(course_details_t &&course)->err_t {
   if (mDbMgr) return mDbMgr->AddCourseToList(course);
   return NULL_PTR;
 }
 
-err_t OLCListMgr::RemoveCourseFromList(course_id &&id) {
+auto OLCListMgr::RemoveCourseFromList(course_id &&id)->err_t {
   if (mDbMgr) return mDbMgr->RemoveCourseFromList(id);
   return NULL_PTR;
 }
 
-err_t OLCListMgr::DiplsyCourseDetailsById(course_id &&id) {
+auto OLCListMgr::DiplsyCourseDetailsById(course_id &&id)->err_t {
   if (mDbMgr == nullptr) return NULL_PTR;
   auto course = mDbMgr->GetCourseById(id);
   if ((course.courseId != 0)) {
@@ -56,11 +56,11 @@ err_t OLCListMgr::DiplsyCourseDetailsById(course_id &&id) {
     return NO_ELEMENTS;
 }
 
-err_t OLCListMgr::ClearAllCourses() {
+auto OLCListMgr::ClearAllCourses()->err_t {
   if (mDbMgr) return mDbMgr->ClearCourseListDB();
   return NULL_PTR;
 }
 
-std::shared_ptr<OLCDataBaseMgr> OLCListMgr::GetPointer() { return mDbMgr; }
+auto OLCListMgr::GetPointer()->std::shared_ptr<OLCDataBaseMgr> { return mDbMgr; }
 
 } /* namespace olc */

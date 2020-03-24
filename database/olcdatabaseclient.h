@@ -37,28 +37,28 @@ class OLCDatabaseClient {
    * @param course : course_details_t structure
    * @return error enumeration
    */
-  err_t AddCourseToList(course_details_t &&course);
+  err_t AddCourseToMap(course_details_t &&course);
 
   /**
    * @details Function to Add users to the map
    * @param user : user_details_t structure
    * @return error enumeration
    */
-  err_t AddUserToList(user_details_t &&user);
+  err_t AddUserToMap(user_details_t &&user);
 
   /**
    * @details Function Remove course from map
    * @param id : Course Id
    * @return error enumeration
    */
-  err_t RemoveCourseFromList(course_id &&id);
+  err_t RemoveCourseFromMap(course_id &&id);
 
   /**
    * @details Function Remove user from map
    * @param id : User Id
    * @return error enumeration
    */
-  err_t RemoveUserFromList(usr_id &&id);
+  err_t RemoveUserFromMap(usr_id &&id);
 
   /**
    * @details Function to Clear course list map

@@ -19,11 +19,11 @@ err_t OLCDataBaseMgr::CreatDatabaseInstance() {
 }
 
 err_t OLCDataBaseMgr::AddCourseToList(course_details_t course) {
-  return mDBClientUniptr->AddCourseToList(std::move(course));
+  return mDBClientUniptr->AddCourseToMap(std::move(course));
 }
 
 err_t OLCDataBaseMgr::RemoveCourseFromList(course_id id) {
-  return mDBClientUniptr->RemoveCourseFromList(std::move(id));
+  return mDBClientUniptr->RemoveCourseFromMap(std::move(id));
 }
 
 err_t OLCDataBaseMgr::ClearCourseListDB() {
@@ -63,11 +63,11 @@ u_int_t OLCDataBaseMgr::GetTotalUserCount() {
 }
 
 err_t OLCDataBaseMgr::AddUser(user_details_t &&user) {
-  return mDBClientUniptr->AddUserToList(std::move(user));
+  return mDBClientUniptr->AddUserToMap(std::move(user));
 }
 
 err_t OLCDataBaseMgr::RemoveUser(usr_id id) {
-  return mDBClientUniptr->RemoveUserFromList(std::move(id));
+  return mDBClientUniptr->RemoveUserFromMap(std::move(id));
 }
 
 err_t OLCDataBaseMgr::DisplayCoursesByAuthor(str_t &&author) {

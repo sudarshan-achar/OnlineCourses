@@ -35,26 +35,26 @@ public:
 	 * @param item : individual object
 	 * @return error enumeration
 	 */
-	err_t InsertToMap(T &&item);
+	auto InsertToMap(T &&item) noexcept ->err_t;
 
 	/**
 	 * @details Function to insert element to map
 	 * @param item : individual object
 	 * @return error enumeration
 	 */
-	err_t RemoveFromMap(T &&item) noexcept;
+	auto RemoveFromMap(T &&item) noexcept ->err_t;
 
 	/**
 	 * @details Function to display all the element details in the map.
 	 * @return error enumeration
 	 */
-	err_t DisplayAll();
+	auto DisplayAll()->err_t;
 
 	/**
 	 * @details Function to clear particular map
 	 * @return error enumeration
 	 */
-	err_t ClearAll();
+	auto ClearAll()->err_t;
 
 	/**
 	 * @details Function to add id to subscription list
@@ -63,7 +63,7 @@ public:
 	 * list
 	 * @return error enumeration
 	 */
-	err_t AddIdToList(u_int_t &&insertId, u_int_t &&objId);
+	auto AddIdToList(u_int_t &&insertId, u_int_t &&objId)->err_t;
 
 	/**
 	 * @details Function to remove id to subscription list
@@ -72,26 +72,26 @@ public:
 	 * the list
 	 * @return error enumeration
 	 */
-	err_t RemoveIdFromList(u_int_t &&removeId, u_int_t &&objId);
+	auto RemoveIdFromList(u_int_t &&removeId, u_int_t &&objId)->err_t;
 
 	/**
 	 * @details Function to return element according to the id passed in.
 	 * @param id
 	 * @return structure
 	 */
-	T GetById(u_int_t &&id);
+	auto GetById(u_int_t &&id)->T;
 
 	/**
 	 * @details Function to get Map size
 	 * @return Map size
 	 */
-	u_int_t GetListSize();
+	auto GetListSize()->u_int_t;
 
 	/**
 	 * @details Function to return pointer to  current map to the client
 	 * @return
 	 */
-	std::unordered_map<u_int_t, T> *GetMap();
+	auto GetMap()->std::unordered_map<u_int_t, T> *;
 
 private:
 	/*!
@@ -111,7 +111,7 @@ inline OLCDataBaseImpl<T>::~OLCDataBaseImpl() {
 }
 
 template <class T>
-inline err_t OLCDataBaseImpl<T>::InsertToMap(T &&item) {
+inline err_t OLCDataBaseImpl<T>::InsertToMap(T &&item) noexcept {
 	auto id = item.GetId();
 	logInfo("OLCDataBaseImpl<T>::InsertToMap() Item Id = ", id);
 	mMap.emplace(std::make_pair(id, item));
@@ -210,7 +210,7 @@ inline u_int_t OLCDataBaseImpl<T>::GetListSize() {
 }
 
 template <class T>
-inline std::unordered_map<u_int_t, T> *OLCDataBaseImpl<T>::GetMap() {
+inline std::unordered_map<u_int_t, T> *OLCDataBaseImpl<T>::GetMap(){
 	logInfo("OLCDataBaseImpl<T>::GetMap()");;
 	return &mMap;
 }

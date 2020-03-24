@@ -20,8 +20,8 @@ class OLCListMgr {
   virtual ~OLCListMgr();
   OLCListMgr(const OLCListMgr &other);
   OLCListMgr(OLCListMgr &&other);
-  OLCListMgr &operator=(const OLCListMgr &other);
-  OLCListMgr &operator=(OLCListMgr &&other);
+  auto operator=(const OLCListMgr &other)->OLCListMgr&;
+  auto operator=(OLCListMgr &&other)->OLCListMgr&;
 
  public:
   /**
@@ -29,52 +29,52 @@ class OLCListMgr {
    * classes
    * @return OLCListMgr* pointer to OLClistmgr class instance
    */
-  OLCListMgr *GetInstance();
+  auto GetInstance()->OLCListMgr *;
 
   /**
    * @details Function to Create database classes
    * @return error enumeration
    */
-  err_t CreateDataBase();
+  auto CreateDataBase()->err_t;
 
   /**
    * @details Function to Display all available courses
    * @return error enumeration
    */
-  err_t DisplayAvailabeCourses();
+  auto DisplayAvailabeCourses()->err_t;
 
   /**
    * @details Function to Display course details By Id
    * @param id : Course id to search course in DB
    * @return error enumeration
    */
-  err_t DiplsyCourseDetailsById(course_id &&id);
+  auto DiplsyCourseDetailsById(course_id &&id)->err_t;
 
   /**
    * @details Function to Add course to list
    * @param course : Course details structure
    * @return error enumeration
    */
-  err_t AddCourseToList(course_details_t &&course);
+  auto AddCourseToList(course_details_t &&course)->err_t;
 
   /**
    * @details Function to remove course from list
    * @param id : course Id
    * @return error enumeration
    */
-  err_t RemoveCourseFromList(course_id &&id);
+  auto RemoveCourseFromList(course_id &&id)->err_t;
 
   /**
    * @details Function to Clear all courses from list
    * @return error enumeration
    */
-  err_t ClearAllCourses();
+  auto ClearAllCourses()->err_t;
 
   /**
    * @details Function return shared object of databasemgr
    * @return error enumeration
    */
-  std::shared_ptr<OLCDataBaseMgr> GetPointer();
+  auto GetPointer()->std::shared_ptr<OLCDataBaseMgr>;
 
  private:
   std::shared_ptr<OLCDataBaseMgr> mDbMgr;  //

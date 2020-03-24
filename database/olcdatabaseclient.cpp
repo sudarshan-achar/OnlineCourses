@@ -33,7 +33,7 @@ err_t OLCDatabaseClient::CreateLists() {
 	return NO_ERROR;
 }
 
-err_t OLCDatabaseClient::AddCourseToList(course_details_t&& course) {
+err_t OLCDatabaseClient::AddCourseToMap(course_details_t&& course) {
 	LOG_PRINT("Course : ",course.courseName);
 	auto lcourse = new OlcCourse<course_details_t>();
 	lcourse->SetData(std::move(course));
@@ -43,7 +43,7 @@ err_t OLCDatabaseClient::AddCourseToList(course_details_t&& course) {
 	return NO_ERROR;
 }
 
-err_t OLCDatabaseClient::AddUserToList(user_details_t&& user) {
+err_t OLCDatabaseClient::AddUserToMap(user_details_t&& user) {
 	LOG_PRINT("User : ",user.userName);
 	auto luser = new OlcUser<user_details_t>();
 	luser->SetData(std::move(user));
@@ -53,13 +53,13 @@ err_t OLCDatabaseClient::AddUserToList(user_details_t&& user) {
 	return NO_ERROR;
 }
 
-err_t OLCDatabaseClient::RemoveUserFromList(usr_id&& id) {
+err_t OLCDatabaseClient::RemoveUserFromMap(usr_id&& id) {
 	LOG_PRINT("User Id :",id);
 	auto user = mPimplUser->GetById(std::move(id));
 	return mPimplUser->RemoveFromMap(std::move(user));
 }
 
-err_t OLCDatabaseClient::RemoveCourseFromList(course_id&& id) {
+err_t OLCDatabaseClient::RemoveCourseFromMap(course_id&& id) {
 	LOG_PRINT("Course Id :",id);
 	auto course = mPimplCourse->GetById(std::move(id));
 	return mPimplCourse->RemoveFromMap(std::move(course));

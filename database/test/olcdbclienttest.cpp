@@ -29,7 +29,7 @@ TEST_F(OLCDataBaseClientTest,Creat_Maps_tets){
 	EXPECT_EQ(NO_ERROR,databaseclient.CreateLists());
 }
 
-TEST_F(OLCDataBaseClientTest,Map_operations){
+TEST_F(OLCDataBaseClientTest,Map_operations_course){
 	OLCDatabaseClient databaseclient;
 	databaseclient.CreateLists();
 
@@ -44,5 +44,17 @@ TEST_F(OLCDataBaseClientTest,Map_operations){
 	EXPECT_EQ(NO_ELEMENTS,databaseclient.RemoveCourseFromMap(std::move(course.courseId)));
 }
 
+TEST_F(OLCDataBaseClientTest,Map_operations_user){
+	OLCDatabaseClient databaseclient;
+	databaseclient.CreateLists();
 
+	user_details_t user;
+	user.userName="Author";
+	user.userId=1234;
+
+	EXPECT_EQ(NO_ERROR,databaseclient.AddUserToMap(std::move(user)));
+	EXPECT_EQ(NOT_FOUND,databaseclient.RemoveUserFromMap(std::move(34)));
+	EXPECT_EQ(NO_ERROR,databaseclient.RemoveUserFromMap(std::move(user.userId)));
+	EXPECT_EQ(NO_ELEMENTS,databaseclient.RemoveCourseFromMap(std::move(user.userId)));
+}
 

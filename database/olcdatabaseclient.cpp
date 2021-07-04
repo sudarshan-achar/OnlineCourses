@@ -30,24 +30,35 @@ err_t OLCDatabaseClient::CreateLists() {
 	mPimplUser = std::make_unique<OLCDataBaseImpl<OlcUser<user_details_t>>>();
 	mPimplVendor =
 			std::make_unique<OLCDataBaseImpl<OlcVendor<vendor_details_t>>>();
+	mDatabase = std::make_unique<DataBase>();
+	mDatabase->CreateTables();
+	mFileStorage = std::make_unique<FileStorage>();
+	mDatabase->RestoreFromeSqlDb(this);
 	return NO_ERROR;
 }
 
-err_t OLCDatabaseClient::AddCourseToMap(course_details_t&& course) {
+err_t OLCDatabaseClient::AddCourseToMap(course_details_t&& course, bool db_write) {
 	LOG_PRINT("Course : ",course.courseName);
 	auto lcourse = new OlcCourse<course_details_t>();
 	lcourse->SetData(std::move(course));
 	mPimplCourse->InsertToMap(std::move(*lcourse));
+	mFileStorage->AddCourseToFile(course);
+	if(db_write){
+		mDatabase->AddCourseData(lcourse);
+	}
 	delete lcourse;
 	lcourse = nullptr;
 	return NO_ERROR;
 }
 
-err_t OLCDatabaseClient::AddUserToMap(user_details_t&& user) {
+err_t OLCDatabaseClient::AddUserToMap(user_details_t&& user, bool db_write) {
 	LOG_PRINT("User : ",user.userName);
 	auto luser = new OlcUser<user_details_t>();
 	luser->SetData(std::move(user));
 	mPimplUser->InsertToMap(std::move(*luser));
+	if(db_write){
+		mDatabase->AddUserData(luser);
+	}
 	delete luser;
 	luser = nullptr;
 	return NO_ERROR;
@@ -88,10 +99,14 @@ u_int_t OLCDatabaseClient::GetTotalVendorsCount() {
 	return mPimplVendor->GetListSize();
 }
 
-err_t OLCDatabaseClient::SubscribeCourse(course_id cid, usr_id uid) {
+err_t OLCDatabaseClient::SubscribeCourse(course_id cid, usr_id uid, bool db_write) {
 	LOG_PRINT("Course Id : ",cid," User Id : ",uid);
 	auto resCourse = mPimplCourse->AddIdToList(std::move(uid), std::move(cid));
 	auto resUser = mPimplUser->AddIdToList(std::move(cid), std::move(uid));
+	if(db_write){
+		mDatabase->AddLinkedId(cid,uid);
+		mDatabase->AddLinkedId(uid,cid);
+	}
 	return (err_t)(resCourse | resUser);
 }
 
@@ -100,6 +115,8 @@ err_t OLCDatabaseClient::UnsubscribeCourse(course_id cid, usr_id uid) {
 	auto resCourse =
 			mPimplCourse->RemoveIdFromList(std::move(uid), std::move(cid));
 	auto resUser = mPimplUser->RemoveIdFromList(std::move(cid), std::move(uid));
+	mDatabase->RemoveLink(cid,uid);
+	mDatabase->RemoveLink(uid,cid);
 	return (err_t)(resCourse | resUser);
 }
 

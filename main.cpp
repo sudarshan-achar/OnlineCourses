@@ -10,6 +10,7 @@
 #include "olcinteractionmgr.h"
 #include "olclistmgr.h"
 #include "olcsubscriptionmgr.h"
+#include "utils/idgenerator.h"
 //#include "logwrapper.h"
 
 # define APPLICATION_ID "APP"
@@ -91,8 +92,8 @@ int main() {
 			course_details_t course;
 			std::cout << "Enter the course name: \n";
 			std::cin >> course.courseName;
-			std::cout << "Enter the course Id: \n";
-			std::cin >> course.courseId;
+			course.courseId = IDGenerator::GetID();
+			std::cout << "Course Id (Unique Id) Generated : ["<<course.courseId<<"]\t\n";
 			std::cout << "Enter the Author name: \n";
 			std::cin >> course.authorName;
 			std::cout << "Enter the course price: \n";
@@ -213,8 +214,8 @@ int main() {
 					user_details_t user;
 					std::cout << "User name (without space): \t";
 					std::cin >> user.userName;
-					std::cout << "\nUser Id (Unique Id): \t";
-					std::cin >> user.userId;
+					user.userId = IDGenerator::GetID();
+					std::cout << "\nUser Id (Unique Id)Generated : ["<<user.userId<<"]\t\n";
 					std::cout << "\nUser domain : \t";
 					std::cin >> user.domain;
 					std::cout << "\nEnter Course Id to enroll \n\n";

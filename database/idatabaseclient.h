@@ -1,5 +1,5 @@
 /*
- * IDataBaseClient.h
+ * idatabaseClient.h
  *
  *  Created on: 27-Jun-2021
  *      Author: sudarshan

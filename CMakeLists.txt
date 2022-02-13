@@ -22,7 +22,7 @@ include_directories(utils)
 set(LIBS 
 	${LIBS}
 	${CMAKE_THREAD_LIBS_INIT}
-	/usr/lib/x86_64-linux-gnu/libsqlite3.so.0
+	-lsqlite3
 )
 
 file(GLOB MAIN_SRC "main.cpp")
@@ -41,10 +41,13 @@ set(LIBS
     ${GTEST_LIBRARIES}
 	#GTest::GTest
 	#GTest::Main
-	/usr/lib/x86_64-linux-gnu/libsqlite3.so.0
+	-lsqlite3
 )
 
 file(GLOB TEST_SRC "database/test/*.cpp")
 add_executable(unit_test ${TEST_SRC} ${SOURCES})
 TARGET_LINK_LIBRARIES(unit_test ${LIBS})
 endif(WITH_TESTS)
+
+install(TARGETS olcproject DESTINATION /usr/bin/)
+
